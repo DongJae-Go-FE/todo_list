@@ -44,7 +44,13 @@ function Todo() {
       ":" +
       seconds;
 
-    let pushData = { title: text, count: 0, date: today, check: false };
+    let pushData = {
+      id: todoCopy.length + 1,
+      title: text,
+      count: 0,
+      date: today,
+      check: false,
+    };
     copy.push(pushData);
     setTodoCopy(copy);
   };
@@ -85,6 +91,7 @@ function Todo() {
     setModal(data);
   };
 
+  /** 투도 완료값 체크 */
   const todoComplete = (checkInfo, subKey, time) => {
     let copy = [...todoCopy];
     copy[subKey].check = checkInfo;
@@ -92,9 +99,17 @@ function Todo() {
     setTodoCopy(copy);
   };
 
+  /** 완료된 값 표시 */
   let todoCom = todoCopy.filter(function (todoComItem) {
     return todoComItem.check === true;
   });
+
+  /** 전체 삭제 */
+  const allClear = () => {
+    let copy = [...todoCopy];
+    copy = [];
+    setTodoCopy(copy);
+  };
 
   return (
     <Styled>
@@ -103,6 +118,9 @@ function Todo() {
         완료 리스트 : {todoCom.length} / 총 리스트 : {todoCopy.length}
       </div>
       <BtnArea>
+        <Button className="red" type="button" onClick={allClear}>
+          전체 삭제
+        </Button>
         <Button className="black" type="button" onClick={todoTitSort}>
           정렬하기
         </Button>
@@ -116,7 +134,7 @@ function Todo() {
                 count={data.count}
                 date={data.date}
                 key={i}
-                subKey={data.id}
+                subKey={i}
                 todoGood={todoGood}
                 todoDel={todoDel}
                 modalOpen={modalOpen}
