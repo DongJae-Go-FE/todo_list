@@ -14,10 +14,9 @@ const Styled = styled.div`
   &.left {
     justify-content: flex-start;
   }
-
-  .btn {
-    & + & {
-      margin-left: 10px;
+  button {
+    &:not(:last-child) {
+      margin-right: 5px;
     }
   }
 `;
