@@ -22,7 +22,7 @@ function Todo() {
   /** 투두리스트 추가 */
   const todoAdd = () => {
     let copy = [...todoCopy];
-    //시간
+    //시간.
     let newDate = new Date();
     let year = newDate.getFullYear();
     let month = ("0" + (newDate.getMonth() + 1)).slice(-2);
